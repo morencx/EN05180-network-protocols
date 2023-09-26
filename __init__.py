@@ -1,4 +1,8 @@
 from udp import nslookup
 
 if __name__ == '__main__':
-    nslookup('google.com', 'ns1.google.com')
+    # Ex. 1: Consulta Não-Autoritativa.
+    nslookup('google.com')
+
+    # # Ex. 2: Consulta Autoritativa.
+    # nslookup('google.com', 'ns1.google.com')
