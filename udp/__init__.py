@@ -2,9 +2,8 @@ import dns.resolver
 
 
 def nslookup(domain_name: str, dns_server: str = None):
-    # Resolvedor de DNS.
+    # Método para resolver consultas DNS.
     resolver = dns.resolver.Resolver()
-    resolver.use_udp = True
 
     # Adiciona o Servidor DNS.
     if dns_server:
@@ -15,11 +14,11 @@ def nslookup(domain_name: str, dns_server: str = None):
     print(f'Server: {dns_server if dns_server else resolver.nameservers[0]}')
     print(f'Address: {resolver.nameservers[0]}:{resolver.port}\n')
 
-    # Resultados da consulta.
+    # Imprime os resultados da consulta.
     for rdtype in ['A', 'AAAA']:
         try:
             result = resolver.resolve(domain_name, rdtype)
-            # Checa se foi uma resposta autoritativa.
+            # Check de resposta autoritativa.
             if not result.response.flags & dns.flags.AA:
                 print('Non-authoritative answer:')
             for address in result:
